@@ -11,7 +11,7 @@ let gatNote = (req,res) => {
     let id = req.params.id;
     let note = memoryStorage.store.getItem(id);
     if (!note) {
-        return res.status(401).send({error: "this note id is not found"});
+        return res.status(404).send({error: "this note id is not found"});
     }
     return res.send(JSON.stringify(note));
 }
@@ -36,7 +36,7 @@ let updateNote = (req,res) => {
     let id = req.params.id;
     let note = memoryStorage.store.getItem(id);
     if (!note) {
-        return res.status(401).send({error: "this note id is not found"});
+        return res.status(404).send({error: "this note id is not found"});
     }
     let obj = req.body;
     let keys = Object.keys(obj);
@@ -56,7 +56,7 @@ let deleteNote = (req,res) => {
     let id = req.params.id;
     let note = memoryStorage.store.getItem(id);
     if(!note) {
-        return res.status(401).send({error: "this note id is not found"});
+        return res.status(404).send({error: "this note id is not found"});
     }
 
     memoryStorage.store.removeItem(id);
